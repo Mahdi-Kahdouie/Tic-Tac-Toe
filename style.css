@@ -25,6 +25,7 @@ body {
   gap: 30px;
 }
 
+
 .cell {
   width: 100px;
   height: 100px;
@@ -39,14 +40,17 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  /* gap: 5px; */
+  
 }
 
+
 .resetBtn {
-  width: 80px;
-  height: 40px;
-  border-radius: 20px;
-    background-color: #ffffff;
+  width: 140px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .playerStatus {
@@ -63,7 +67,19 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
 
+.playerStatus {
+  width: 140px; 
+  height: 42px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .player-inputs {
   display: flex;
   justify-content: center;
