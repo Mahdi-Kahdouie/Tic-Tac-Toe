@@ -26,8 +26,8 @@ function player(name, symbol) {
 }
 
 const gameController = (function () {
-  const player1 = player("Mahdi", "X");
-  const player2 = player("Computer", "o");
+  let player1 = player("Player 1", "X");
+  let player2 = player("Player 2", "o");
 
   let activePlayer = player1;
   let gameOver = false;
@@ -81,32 +81,79 @@ const gameController = (function () {
     return false;
   }
 
-  return { playRound, checkWinner };
+  function resetGame() {
+    gameBoard.resetArray();
+    gameOver = false;
+    activePlayer = player1;
+  }
+
+  function setPlayerNames(name1, name2) {
+    player1 = player(name1 || "Player 1", "X");
+    player2 = player(name2 || "Player 2", "o");
+    resetGame();
+  }
+  const getActivePlayer = () => activePlayer;
+  const getGameOver = () => gameOver;
+
+  return {
+    playRound,
+    checkWinner,
+    getActivePlayer,
+    getGameOver,
+    resetGame,
+    setPlayerNames,
+  };
 })();
 
-// gameController.playRound(0);
-// gameController.playRound(4);
-// gameController.playRound(1);
-// gameController.playRound(5);
-// gameController.playRound(2);
+const displayGame = (function () {
+  const cell = document.querySelectorAll(".cell");
 
-// gameController.playRound(0); //me
-// gameController.playRound(1); //computer
-// gameController.playRound(2); //me
+  const playerStatus = document.querySelector(".playerStatus");
 
-// gameController.playRound(3); //computer
-// gameController.playRound(4); //me
-// gameController.playRound(6); //computer
+  const resetBtn = document.querySelector(".resetBtn");
 
-// gameController.playRound(5); //me
-// gameController.playRound(8); //computer
-// gameController.playRound(7); //me
+  const p1Input = document.querySelector("#p1-name");
+  const p2Input = document.querySelector("#p2-name");
+  const startBtn = document.querySelector("#start-btn");
 
-// gameController.playRound(8);
-// gameController.playRound(4);
-// gameController.playRound(1);
-// gameController.playRound(5);
-// gameController.playRound(2);
-// gameController.playRound(3);
+  cell.forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = button.dataset.index;
+      gameController.playRound(index);
+      updateScreen();
+    });
+  });
 
-console.log(gameBoard.getBoard());
+  resetBtn.addEventListener("click", () => {
+    gameController.resetGame();
+    updateScreen();
+  });
+
+  const updateScreen = () => {
+    const board = gameBoard.getBoard();
+
+    cell.forEach((button) => {
+      const index = button.dataset.index;
+      button.textContent = board[index] || "";
+    });
+
+    if (gameController.getGameOver()) {
+      if (!board.includes(null) && gameController.checkWinner() == false) {
+        playerStatus.textContent = "Tie";
+      } else {
+        playerStatus.textContent = `${gameController.getActivePlayer().name} won!`;
+      }
+    } else {
+      playerStatus.textContent = `Turn: ${gameController.getActivePlayer().name}`;
+    }
+  };
+
+  startBtn.addEventListener("click", () => {
+    const name1 = p1Input.value.trim();
+    const name2 = p2Input.value.trim();
+
+    gameController.setPlayerNames(name1, name2);
+    updateScreen();
+  });
+  updateScreen();
+})();

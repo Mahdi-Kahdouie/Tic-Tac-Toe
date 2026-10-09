@@ -11,24 +11,28 @@
     <div class="container">
       <div class="header">
         <h1>Tic Tac Toe</h1>
+        <div class="player-inputs">
+  <input type="text" id="p1-name" placeholder="Player 1" />
+  <input type="text" id="p2-name" placeholder="Player 2" />
+  <button id="start-btn">Start Game</button>
+</div>
       </div>
 
       <div class="main">
         <button class="resetBtn">Reset</button>
+
         <div class="gameBoard">
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
-          <button class="cell"></button>
+          <button class="cell" data-index="0"></button>
+          <button class="cell" data-index="1"></button>
+          <button class="cell" data-index="2"></button>
+          <button class="cell" data-index="3"></button>
+          <button class="cell" data-index="4"></button>
+          <button class="cell" data-index="5"></button>
+          <button class="cell" data-index="6"></button>
+          <button class="cell" data-index="7"></button>
+          <button class="cell" data-index="8"></button>
         </div>
-        <div class="playerStatus">
-            
-        </div>
+        <div class="playerStatus"></div>
       </div>
       <div class="bottom"></div>
     </div>
