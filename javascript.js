@@ -102,11 +102,11 @@ const gameController = (function () {
 // gameController.playRound(8); //computer
 // gameController.playRound(7); //me
 
-gameController.playRound(8);
-gameController.playRound(4);
-gameController.playRound(1);
-gameController.playRound(5);
-gameController.playRound(2);
-gameController.playRound(3);
+// gameController.playRound(8);
+// gameController.playRound(4);
+// gameController.playRound(1);
+// gameController.playRound(5);
+// gameController.playRound(2);
+// gameController.playRound(3);
 
 console.log(gameBoard.getBoard());
